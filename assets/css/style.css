@@ -516,3 +516,6 @@ table.nutri{width:100%;border-collapse:collapse;min-width:820px;font-size:15px}
 @media (max-width:640px){.showcase{--hh:72px}}
 @media (max-width:900px) and (max-height:640px){.sc-specs{display:none}}
 body.on-green .fab{background:var(--navy);box-shadow:0 18px 40px -14px rgba(0,31,69,.8)}
+.showcase{transition:background-color .9s var(--ease)}
+.showcase[data-active="1"]{background:var(--navy-900)}
+.showcase[data-active="2"]{background:var(--green)}
