@@ -86,8 +86,37 @@
       var msg = 'Hello Dr.Fishco,\n\nName: ' + name + '\nMobile: ' + phone + '\nI am a: ' + F('type').value +
         '\nProduct: ' + F('product').value + (F('loc').value ? '\nLocation: ' + F('loc').value : '') +
         (F('msg').value ? '\n\n' + F('msg').value : '');
-      window.open('https://wa.me/919553345964?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+      window.open('https://wa.me/919553345963?text=' + encodeURIComponent(msg), '_blank', 'noopener');
     });
+  }
+
+
+  // Scroll showcase: one packet per screen
+  var sc = document.querySelector('[data-showcase]');
+  if (sc) {
+    var slides = sc.querySelectorAll('.sc-slide'), dots = sc.querySelectorAll('.sc-dots i'), cur = -1;
+    function setSlide(i) {
+      if (i === cur) return; cur = i;
+      sc.setAttribute('data-active', i);
+      body.classList.toggle('on-green', i === 2 && sc.getBoundingClientRect().bottom > innerHeight * .5);
+      slides.forEach(function (s, n) {
+        s.classList.toggle('on', n === i); s.classList.toggle('past', n < i);
+        s.setAttribute('aria-hidden', String(n !== i));
+        var a = s.querySelector('a'); if (a) a.tabIndex = n === i ? 0 : -1;
+      });
+      dots.forEach(function (d, n) { d.classList.toggle('on', n === i); });
+    }
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var r = sc.getBoundingClientRect(), sticky = sc.querySelector('.sc-sticky').offsetHeight;
+      var run = sc.offsetHeight - sticky, p = Math.min(Math.max(-r.top / run, 0), 0.9999);
+      setSlide(Math.floor(p * slides.length));
+      body.classList.toggle('on-green', cur === 2 && r.bottom > innerHeight * .5);
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
   }
 
   var yr = document.getElementById('yr');
