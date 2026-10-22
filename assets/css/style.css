@@ -440,7 +440,7 @@ table.nutri{width:100%;border-collapse:collapse;min-width:820px;font-size:15px}
 }
 
 /* ---------- Scroll showcase (packets as posters) ---------- */
-.showcase{--hh:84px;position:relative;height:330vh;background:var(--navy)}
+.showcase{--hh:84px;padding:0;position:relative;height:330vh;background:var(--navy)}
 .sc-sticky{position:sticky;top:var(--hh);height:calc(100vh - var(--hh));height:calc(100svh - var(--hh));overflow:hidden;color:#fff;background:var(--navy);transition:background-color .9s var(--ease);isolation:isolate}
 .showcase[data-active="1"] .sc-sticky{background:var(--navy-900)}
 .showcase[data-active="2"] .sc-sticky{background:var(--green)}
