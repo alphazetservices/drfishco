@@ -391,8 +391,6 @@ table.nutri{width:100%;border-collapse:collapse;min-width:820px;font-size:15px}
   .nav-links .btn{margin:24px 0 0;height:58px;font-size:16px;letter-spacing:0}
   body.menu-open{overflow:hidden}
   body.menu-open .site-header{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none}
-  body.menu-open .brand{filter:brightness(0) invert(1)}
-  body.menu-open .menu-toggle{background:transparent;border-color:rgba(255,255,255,.3)}
   body.menu-open .menu-toggle span{background:#fff}
   body.menu-open .menu-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
   body.menu-open .menu-toggle span:nth-child(2){opacity:0}
@@ -519,3 +517,81 @@ body.on-green .fab{background:var(--navy);box-shadow:0 18px 40px -14px rgba(0,31
 .showcase{transition:background-color .9s var(--ease)}
 .showcase[data-active="1"]{background:var(--navy-900)}
 .showcase[data-active="2"]{background:var(--green)}
+
+/* ---------- 3D floating navbar ---------- */
+html{scroll-padding-top:120px}
+.site-header{position:fixed;left:0;right:0;top:0;padding-top:14px;background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;transition:padding .3s}
+.site-header.scrolled{box-shadow:none;padding-top:10px}
+.nav{position:relative;height:80px;padding:0 12px 0 10px;border-radius:22px;
+  background:linear-gradient(180deg,#0e539f 0%,#003f86 38%,#003471 62%,#00264f 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -3px 0 rgba(0,0,0,.32),0 0 0 1px rgba(0,22,52,.7),0 6px 0 #001a3a,0 26px 44px -14px rgba(0,18,45,.7)}
+.nav::after{content:"";position:absolute;left:8%;right:8%;bottom:1px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#5fc236 30%,#459522 70%,transparent);filter:drop-shadow(0 0 6px rgba(95,194,54,.9));pointer-events:none}
+.scrolled .nav{height:72px}
+.brand{display:flex;align-items:center;height:62px;padding:0 16px;border-radius:16px;background:linear-gradient(180deg,#ffffff 0%,#f1f5fa 60%,#e2eaf4 100%);
+  box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(0,52,113,.08),0 4px 0 #9fb4cf,0 12px 18px -8px rgba(0,0,0,.55);transition:height .3s,transform .25s}
+.brand:hover{transform:translateY(-1px)}
+.brand img,.scrolled .brand img{height:50px}
+.scrolled .brand{height:56px}
+.scrolled .brand img{height:44px}
+.nav-links a:not(.btn){color:rgba(255,255,255,.86);font-weight:500;padding:11px 18px;border-radius:12px;transition:background .2s,color .2s,box-shadow .2s}
+.nav-links a:not(.btn):hover{background:rgba(255,255,255,.08);color:#fff}
+.nav-links a.active{color:#fff !important;background:rgba(0,0,0,.28) !important;box-shadow:inset 0 2px 4px rgba(0,0,0,.45),0 1px 0 rgba(255,255,255,.12)}
+.nav-links a.active::after{bottom:4px;background:#5fc236;box-shadow:0 0 6px #5fc236}
+.nav-links .btn{height:50px;border-radius:14px;background:linear-gradient(180deg,#5cb532 0%,#459522 55%,#3b8420 100%);color:#fff;border:0;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 -2px 0 rgba(0,0,0,.18),0 4px 0 #285f12,0 12px 18px -8px rgba(0,0,0,.55);transition:transform .15s,box-shadow .15s}
+.nav-links .btn:hover{transform:translateY(-1px);background:linear-gradient(180deg,#63bd38 0%,#4a9f25 55%,#3f8b22 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 -2px 0 rgba(0,0,0,.18),0 5px 0 #285f12,0 14px 20px -8px rgba(0,0,0,.55)}
+.nav-links .btn:active{transform:translateY(3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 1px 0 #285f12}
+.menu-toggle{width:50px;height:50px;border:0;border-radius:14px;background:linear-gradient(180deg,#0e539f,#00264f);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 4px 0 #001a3a,0 10px 16px -8px rgba(0,0,0,.6)}
+.menu-toggle span{background:#fff}
+.menu-toggle:active{transform:translateY(3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 1px 0 #001a3a}
+
+/* content clears the floating bar */
+.showcase{--hh:0px}
+.sc-sticky{padding-top:108px;box-sizing:border-box}
+.sc-top{top:120px}
+.page-hero{padding-top:200px}
+
+@media (max-width:900px){
+  .nav-links{background:linear-gradient(180deg,var(--navy-900),var(--navy));padding-top:130px}
+  .nav-links a:not(.btn){color:#fff;font-size:28px;padding:12px 8px;border-radius:12px}
+  .nav-links a.active{background:rgba(255,255,255,.06) !important;box-shadow:none}
+  .nav-links a.active::after{display:none}
+  .nav-links .btn{height:58px;margin-top:26px}
+  .sc-sticky{padding-top:98px}
+}
+@media (max-width:640px){
+  html{scroll-padding-top:100px}
+  .site-header{padding-top:10px}
+  .site-header .container.nav{width:calc(100% - 20px)}
+  .nav,.scrolled .nav{height:70px;border-radius:18px;padding:0 9px 0 8px}
+  .brand,.scrolled .brand{height:54px;padding:0 12px;border-radius:13px}
+  .brand img,.scrolled .brand img{height:42px}
+  .menu-toggle{width:46px;height:46px}
+  .sc-sticky{padding-top:86px}
+  .page-hero{padding-top:150px}
+}
+/* bigger logo badge */
+.nav{height:92px}
+.scrolled .nav{height:80px}
+.brand{height:74px;padding:0 20px;border-radius:18px}
+.brand img{height:60px}
+.scrolled .brand{height:64px}
+.scrolled .brand img{height:52px}
+.sc-sticky{padding-top:122px}
+.sc-top{top:134px}
+.page-hero{padding-top:210px}
+@media (max-width:900px){.sc-sticky{padding-top:112px}}
+@media (max-width:640px){
+  .nav,.scrolled .nav{height:76px}
+  .brand,.scrolled .brand{height:62px;padding:0 14px}
+  .brand img,.scrolled .brand img{height:50px}
+  .sc-sticky{padding-top:96px}
+  .page-hero{padding-top:160px}
+}
+/* hamburger fix: style only the three bars, not the wrapper */
+.menu-toggle .bars{display:block;width:20px;height:auto;margin:0 auto;background:none !important;transform:none !important;opacity:1 !important}
+.menu-toggle .bars span{display:block;width:20px;height:2px;margin:0;background:#fff;border-radius:2px;transition:transform .3s var(--ease),opacity .2s}
+.menu-toggle .bars span+span{margin-top:5px}
+body.menu-open .menu-toggle .bars span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+body.menu-open .menu-toggle .bars span:nth-child(2){opacity:0}
+body.menu-open .menu-toggle .bars span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
